@@ -1,7 +1,9 @@
 form {
+  font-size: 25px;
+  width: 400px;
   margin: 0.5rem;
-  display: block;
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
 }
 
 input, select {
