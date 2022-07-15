@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "firstName": "Elijah", "secondName": "Bundi", "id": "1", "gender": "male", "newsletter": false },
+    { "firstName": "Elijah", "secondName": "Bundi", "id": "2", "gender": "male", "newsletter": false },
+    { "firstName": "Elijah", "secondName": "Bundi", "id": "3", "gender": "male", "newsletter": false }
+  ]
+}

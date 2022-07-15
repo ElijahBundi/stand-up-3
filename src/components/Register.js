@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-function Register() {
+function Register({ onAddItem }) {
   // useState takes one param(initial value) and returns
   // two values: The first value is the initial state and 
   // the second one is a function that is used for updating the state.
@@ -9,14 +9,14 @@ function Register() {
 
     const [firstName, setFirstName] = useState("");
     const [secondName, setSecondName] = useState("");
-    const [image, setImage] = useState("");
+    const [id, setid] = useState(0);
     const [gender, setGender] = useState("");
     const [newsletter, setNewsletter] = useState(false);
 
     // const [formData, setFormData] = useState({
     //   firstName: "",
     //   secondName: "",
-    //   image: "",
+    //   id: "",
     //   gender: "male",
     //   newsletter: true
     // })
@@ -24,15 +24,36 @@ function Register() {
     function handleSubmit(event) {
       // method that stops the default function of updating
       event.preventDefault();
-      const formData = { 
-        firstName,
-        secondName,
-        image,
-        gender,
-        newsletter
+      // const formData = { 
+      //   firstName,
+      //   secondName,
+      //   id,
+      //   gender,
+      //   newsletter
+      // }
+      // console.log(formData);
+      const itemObj = { 
+        item: { 
+          firstName: firstName,
+          secondName: secondName,
+          id: id,
+          gender: gender,
+          newsletter: false
+        }
       }
-      console.log(formData);
+          // persist todo on server
+      fetch("/items", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(itemObj)
+      })
+      .then(r => r.json())
+      .then(data => onAddItem(data.item))
+      // then use onAddItem to add item to state
     }
+
 
     
     
@@ -58,16 +79,12 @@ function Register() {
           onChange={(e) => setSecondName(e.target.value)}
         />
   
-        <label htmlFor="image">Image</label>
+        <label htmlFor="id">id</label>
         <input
           type="text"
-          id="image"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <img
-          src={image}
-          alt="Preview"
+          id="id"
+          value={id}
+          onChange={(e) => setid(e.target.value)}
         />
   
         <label htmlFor="type">Gender</label>
