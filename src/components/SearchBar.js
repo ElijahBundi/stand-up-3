@@ -1,13 +1,14 @@
 import React, { useState, useEffect} from 'react';
 
+// COMPONENT 2
 function SearchBar() {
 
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        // console.log('useEffect called')
-        setTimeout(() => setCount(0), 5000)
-    }, [])
+        console.log('useEffect called')
+        // setTimeout(() => setCount(0), 5000)
+    }, [count])
     // deps array 
    // - if empty, only run once!
   // - if we have a variable in the deps array, useEffect will run what the value changes
